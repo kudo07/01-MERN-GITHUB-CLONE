@@ -11,15 +11,13 @@ const HomePage = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortType, setSortType] = useState('');
-  //
+
   const getUserProfileAndRepos = useCallback(async (username = 'kudo07') => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/users/profile/${username}`
-      );
+      const response = await fetch(`/api/users/profile/${username}`);
       const { userProfile, repos } = await response.json();
-      console.log('userProfile', userProfile);
+      console.log('userProfile home.jsx', userProfile);
       setUserProfile(userProfile);
       setRepos(repos);
       return { userProfile, repos };

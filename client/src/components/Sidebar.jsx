@@ -5,9 +5,11 @@ import { MdOutlineExplore } from 'react-icons/md';
 import { PiSignInBold } from 'react-icons/pi';
 import { MdEditDocument } from 'react-icons/md';
 import Logout from './Logout';
+import { ImProfile } from 'react-icons/im';
+import { useAuthContext } from '../context/AuthContext';
 
 const Sidebar = () => {
-  const authUser = false;
+  const { authUser } = useAuthContext();
   return (
     <aside className="flex flex-col items-center min-w-12 sm:w-16 sticky top-0 left-0 h-screen py-8 overflow-y-auto border-r bg-glass">
       <nav className="h-full flex flex-col gap-4">
@@ -20,10 +22,10 @@ const Sidebar = () => {
           className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg 
 					hover:bg-gray-800"
         >
-          <IoHomeSharp size={22} />
+          <ImProfile size={22} />
         </Link>
         {/*  */}
-        {!authUser && (
+        {authUser && (
           <Link
             to="/likes"
             className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -31,7 +33,7 @@ const Sidebar = () => {
             <FaHeart size={22} />
           </Link>
         )}
-        {!authUser && (
+        {authUser && (
           <Link
             to="/explore"
             className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -40,7 +42,7 @@ const Sidebar = () => {
           </Link>
         )}
         {/*  */}
-        {authUser && (
+        {!authUser && (
           <Link
             to="/login"
             className="p-1.5 focus:outline-nones transition-colors duration-200 rounded-lg hover:bg-gray-800"
