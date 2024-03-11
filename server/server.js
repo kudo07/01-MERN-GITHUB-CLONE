@@ -14,6 +14,7 @@ import connectMongoDB from './db/connectMongoDB.js';
 dotenv.config();
 //
 const app = express();
+const PORT = process.env.PORT || 5000;
 // passport
 app.use(
   session({ secret: 'keyboard cat', resave: false, saveUninitialised: false })
@@ -37,7 +38,9 @@ app.use('/api/explore', exploreRoutes);
 app.use('/api/auth', authRoutes);
 // use prefix as it is a good practice
 //
-app.listen(5000, () => {
-  console.log('server is running in backedn on 5000');
+// http://localhost:5000 both run the client and server on the same domain
+app.listen(PORT, () => {
+  console.log(`server is running in backedn on http://localhost:${PORT}`);
   connectMongoDB();
 });
+// 3:53
